@@ -1,18 +1,20 @@
 # Blood & Truth PC VR prototype
 
-An experimental Windows OpenXR port based on shadPS4, with integration work inherited from AstroQuest and Farpoint. Version 0.1.0 is a development preview, not a finished or reliably playable port.
+An experimental Windows OpenXR port based on shadPS4, with integration work inherited from AstroQuest and Farpoint. Version 0.1.1 is a development preview, not a finished or reliably playable port.
 
 ## Status
 
-Local testing reached gameplay after calibration. Two tracked controllers and corrected hand mapping are implemented. Original, High (1440 x 1632 per eye), and Ultra (8x original pixel count) resolution options are available. Shader resource metadata, depth/stencil handling, GPU memory tracking, audio and VR compatibility fixes are included.
+Local testing reached gameplay after calibration. Two tracked controllers and corrected hand mapping are implemented. Original, High (1440 x 1632 per eye), and Ultra (8x original pixel count) resolution options are available. Shader resource metadata, depth/stencil handling, GPU memory tracking, audio and VR compatibility fixes are included. New in 0.1.1: the launcher can unpack a game `.pkg` for you (see First installation).
 
 **Known problems:** geometry and textures can disappear or pop in and out, including walls and hands. Loading stalls and crashes remain possible. Higher resolutions are experimental. This release does not claim to resolve these remaining issues. The release executable is rebuilt from the published source; it has not received a fresh headset gameplay test.
 
 ## First installation
 
 1. Install the Microsoft Visual C++ 2015-2022 x64 runtime. A Vulkan-capable GPU, Windows x64, an active OpenXR runtime, and a VR headset with two tracked controllers are required.
-2. Extract the release ZIP into its own folder.
-3. Supply your own complete extracted **Blood & Truth CUSA11108 version 1.00** game, including matching metadata. Put `eboot.bin` at `games/CUSA11108/files/uroot/eboot.bin` relative to the folder containing `Play Blood and Truth.bat`. Keep the complete game directory structure, including `sce_sys/param.sfo`. Alternatively enter another extracted `eboot.bin` path in the launcher. This package does not extract PKG files.
+2. Extract the release ZIP into its own folder. Use a short path such as `C:\TruthXR`, because very long paths can stop the game's files from opening.
+3. Supply your own copy of **Blood & Truth CUSA11108 version 1.00**, in one of two ways:
+   - **As a `.pkg` (new in 0.1.1):** create a `games` folder next to `Play Blood and Truth.bat` and put the `.pkg` in it, or type the path to the `.pkg` in the launcher. The launcher asks before unpacking it, then unpacks it once into `games/CUSA11108/files/uroot/`. You need about twice the package's size in free disk space. Only a `.pkg` made from a dump of the game works, because it is not encrypted. A `.pkg` from the PlayStation Store is encrypted and cannot be unpacked.
+   - **Already extracted:** put `eboot.bin` at `games/CUSA11108/files/uroot/eboot.bin`. Keep the complete game directory structure, including `sce_sys/param.sfo`. Alternatively enter another extracted `eboot.bin` path in the launcher.
 4. Connect the headset, wake both controllers, and open `Play Blood and Truth.bat`. Select resolution and mirror FPS, then start.
 
 No game files, console firmware, saves, shader caches or personal logs are included. Only the exact supported game executable is accepted. Saves are created under `pc-vr/user/home/1000/savedata/`; logs are under `pc-vr/user/log/`. Keep the entire user folder when transferring your own progress between prototype installations.
@@ -29,4 +31,8 @@ Diagnostic capture code is opt-in; do not enable `SHADPS4_CAPTURE_TARGETS` or in
 
 ## Credits and license
 
-Based on [shadPS4](https://github.com/shadps4-emu/shadPS4), [AstroQuest](https://github.com/bigmak94/AstroQuest), and the related [Farpoint port](https://github.com/evertec82/Farpoint). Original copyright and attribution notices are retained. See LICENSE and LICENSES for GPL and third-party notices. This project is not affiliated with Sony or London Studio.
+Based on [shadPS4](https://github.com/shadps4-emu/shadPS4), [AstroQuest](https://github.com/bigmak94/AstroQuest), and the related [Farpoint port](https://github.com/evertec82/Farpoint). Original copyright and attribution notices are retained. See LICENSE and LICENSES for GPL and third-party notices.
+
+Package unpacking uses PkgTool from [LibOrbisPkg](https://github.com/maxton/LibOrbisPkg), licensed LGPL-3.0, included unmodified in `tools/pkgtool` with its license text. The launcher runs it as a separate program.
+
+This project is not affiliated with Sony or London Studio.
