@@ -1,0 +1,22 @@
+{
+  "Users": {
+    "commit_hash": "e9f2c54c207ad6d789d898b3a691aa4b34a59c96",
+    "user": [
+      {
+        "np_age": 30,
+        "np_country": "us",
+        "np_date_of_birth": "1994-01-01",
+        "np_language": "en",
+        "player_index": 1,
+        "shadnet_email": "",
+        "shadnet_enabled": false,
+        "shadnet_npid": "",
+        "shadnet_password": "",
+        "shadnet_token": "",
+        "user_color": 1,
+        "user_id": 1000,
+        "user_name": "Player"
+      }
+    ]
+  }
+}
